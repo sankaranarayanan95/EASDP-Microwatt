@@ -50,10 +50,10 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 
 ---
 
-## 🧩 Architecture at a Glance
+## 🧩 📐👷🏻‍♀️ Detailed Architecture at a Glance
 
   <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/RISC-V-logo.svg" width="250"/>
+   <img src="arch_microwatt.png" alt="GTKWave Counter Output" width="300%">
   <br>
   <b>🔗⚡🖥️ Integration with Microwatt SoC</b>
 </p>
