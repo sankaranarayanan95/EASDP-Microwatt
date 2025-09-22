@@ -4,74 +4,147 @@ _A Reconfigurable SoC for Low-Power Edge Intelligence_
 ---
 
 ## 📄 Problem Statement
-The rapid growth of **edge computing** has created a demand for systems that can efficiently process **heterogeneous sensor data** while maintaining strict **energy** and **latency** constraints.  
+The **explosion of edge computing** demands systems that can process **heterogeneous sensor data** under **tight energy & latency constraints**.  
 
 Applications such as:  
-- 🩺 **Continuous ECG monitoring**  
-- ✋ **Gesture recognition in wearables**  
-- 🌍 **Environmental sensing in IoT devices**  
+- 🩺 **Continuous ECG monitoring** (healthcare wearables)  
+- ✋ **Gesture recognition** (smartwatches, AR/VR)  
+- 🌍 **Environmental sensing** (IoT nodes)  
 
-all require a **balance** between:  
-- 🔋 **Low-power streaming operations**  
-- ⚡ **High-performance compute bursts**
+👉 All require **continuous, low-power streaming** + **occasional compute bursts**.  
 
----
+**Current trade-offs:**  
+- 🛠️ Fixed-function accelerators → 🔋 energy-efficient ✅, but rigid ❌  
+- 🖥️ General-purpose CPUs → flexible ✅, but inefficient ❌  
 
-## 🚧 Current Limitations
-Existing solutions fall into two extremes:  
-1. 🛠️ **Fixed-function accelerators** → Energy-efficient but rigid ❌  
-2. 🖥️ **General-purpose CPUs** → Flexible but inefficient ❌  
-
-This gap prevents **scalable, energy-adaptive edge intelligence**, especially in **medical & wearable domains** where:  
-- Continuous operation is critical  
-- Battery resources are limited  
+⚠️ This gap **blocks scalable, energy-adaptive edge intelligence**, especially for **medical & wearable devices** where:  
+- 🕒 **24/7 continuous operation** is critical  
+- 🔋 **Battery resources are precious**  
 
 ---
 
 ## 💡 Proposed Solution
-We propose an **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupled with the **open-source Microwatt CPU core**.  
+We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupled with the open-source **Microwatt RISC-V core**.  
 
-### 🔀 Dual Operating Modes
-1. **Streaming Mode** → Continuous, low-power operations  
-   - FIR/IIR filtering  
-   - Feature extraction (e.g., R-peak detection for ECG)  
+### 🔀 Dual-Mode SPU (Sensor Processing Unit)
+1. **Streaming Mode**  
+   - Ultra-low-power operations: FIR/IIR filters, moving average, feature extraction (e.g., ECG R-peak).  
+   - Keeps device alive continuously with minimum energy.  
 
-2. **Burst Mode** → Compute-intensive tasks  
-   - Gesture recognition  
-   - Keyword spotting  
-   - Compact **MAC (Multiply-Accumulate) array**  
+2. **Burst Mode**  
+   - Short, high-performance compute bursts.  
+   - Compact systolic **MAC array (e.g., 8×8)** for gesture/keyword recognition.  
+   - Activation units for ML inference.  
 
----
+### 🕹️ Control & Policy Unit
+- Implemented with counters + FSM.  
+- Dynamically switches **between modes** based on:  
+  - 🔋 Energy constraints  
+  - 🕒 Latency deadlines  
+  - 📈 Sensor activity levels  
 
-## 🧩 Key Components
-- ⚙️ **Reconfigurable Sensor Processing Unit (SPU)** → Handles both streaming & burst workloads  
-- 🕹️ **Lightweight Control & Policy Unit** → Dynamically switches modes based on:  
-  - Workload activity  
-  - Latency requirements  
-  - Energy constraints  
-
-Result 👉 Optimal **performance per watt** ✅  
-
----
-
-## 🏗️ Implementation Details
-- 🖧 **Architecture** → Modular & fully digital  
-- 🧱 **Technology** → SkyWater 130nm (**SKY130**)  
-- 🔓 **Open-Source Flows** → Yosys, Verilator, OpenLane  
-- 📦 **Integration** → Fits within **ChipFoundry OpenFrame** user project area  
-- ✅ **Tapeout-Ready** → Filters, MAC arrays & FSM control ensure feasibility  
+### 🧠 Role of Microwatt CPU
+- Host controller for the SPU.  
+- Handles **sensor input**, decision logic, and workload scheduling.  
+- Coordinates SPU, memory, and peripherals.  
 
 ---
 
-## 🌟 Impact
-✨ First **open-source Microwatt-based SoC** with **runtime energy-adaptive sensor processing**.  
-✨ Bridges the gap between **CPU flexibility** and **accelerator efficiency**.  
-✨ Fabrication-ready design with novelty, adaptability, and real-world impact.  
+## 🧩 Architecture at a Glance
+
+  <p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/RISC-V-logo.svg" width="250"/>
+  <br>
+  <b>🔗⚡🖥️ Integration with Microwatt SoC</b>
+</p>
+
+
+
+---
+
+## ⚙️ Key Features
+1. **Dual-Mode SPU**  
+   - 🔋 **Streaming pipeline** → FIR/IIR, moving avg, statistical features.  
+   - ⚡ **Burst pipeline** → Compact MAC (8×8) for ML inference.  
+   - 🔀 FSM-based mode switching (low overhead).  
+
+2. **Dynamic Power Gating & Clock Control**  
+   - ⏸️ Power-off idle blocks.  
+   - ⚡ Minimized leakage + switching → practical for SKY130 tapeout.  
+
+3. **Programmable Register Interface**  
+   - 📝 Memory-mapped registers via Microwatt.  
+   - Configurable filter coefficients, thresholds, MAC array dims.  
+
+4. **Energy & Latency Monitoring**  
+   - ⏱️ Hardware counters track cycles, events, buffer fill.  
+   - Ensures **adaptive runtime switching**.  
+
+5. **Lightweight On-Chip DMA**  
+   - 🚀 Automated data movement between **sensor FIFO → SPU → memory**.  
+   - CPU freed from repetitive tasks → saves energy.  
+
+---
+
+## 🌍 Impact of the Solution
+### 1. 🔋 Energy Efficiency for Edge Devices  
+- Combines **Microwatt CPU** + **reconfigurable accelerator**.  
+- Extends **battery life** of IoT & wearables.  
+- Enables **sustainable continuous operation**.  
+
+### 2. 💸 Accessibility & Affordability  
+- 100% **open-source (RISC-V, Microwatt, Yosys, OpenLane)**.  
+- Low-cost & reproducible → startups, students, research labs benefit.  
+
+### 3. 🩺 Real-World Healthcare Benefits  
+- Adaptive compute for **ECG, EEG, motion tracking**.  
+- Improves **accuracy & reliability** in wearables.  
+- Early detection → **life-saving interventions**.  
+
+### 4. 📡 Scalability Across Domains  
+- Industrial IoT ✅  
+- Smart homes ✅  
+- Environmental sensing ✅  
+- Autonomous edge systems ✅  
+
+### 5. 🏭 Path to Fabrication & Commercialization  
+- **Tapeout-ready** with SKY130 + OpenFrame.  
+- Serves as **proof-of-concept for low-power AI accelerators**.  
+- Potential entry into **$100B+ IoT semiconductor market**.  
+
+---
+
+## 🌟 Novelty of the Project
+1. 🧩 **Microwatt + Reconfigurable Accelerator** → First integration of an open-source RISC-V core with a dual-mode SPU.  
+2. 🔀 **Adaptive Dual-Mode Processing** → Seamless switch between **continuous low-power streaming** & **burst ML inference**.  
+3. 🛠️ **Fabrication-Friendly, Open-Source** → SKY130 + Yosys + OpenLane + Verilator = **full open hardware flow**.  
+4. 🌐 **Heterogeneous Sensor Workload Handling** → Works across ECG, IMU, environmental, and more.  
+5. 🌍 **Democratized Chip Innovation** → Bridges **academia → fabrication**, empowering startups & labs.  
+
+---
+
+## 🎯 Why This Project Stands Out
+- ✅ **First-of-its-kind open-source Microwatt SoC** for energy-adaptive processing.  
+- ✅ **Tapeout-feasible** with proven simplicity (filters, MACs, FSM).  
+- ✅ **Balanced**: CPU flexibility + Accelerator efficiency.  
+- ✅ **Impactful**: Healthcare, IoT, industry, and beyond.  
 
 ---
 
 ## 👨‍💻 Contributors
-- 📝 Sankararayanan V
-- 📝 chezhiyan M
-- 📝 Ebinesh K
+- 📝 **Sankararayanan V**
+- 📝 **Chezhiyan M**
+- 📝 **Ebinesh K**
 
+---
+
+## 🚀 Next Steps for Hackathon
+- 🏗️ RTL coding of SPU & FSM (Verilog).  
+- 🧪 Simulation using **Yosys + Verilator**.  
+- ⚡🖥️ Integration with Microwatt SoC  
+- 📐 Physical design via **OpenLane (SKY130)**.  
+- 🎉 Prepare for **tapeout submission** in OpenFrame!  
+
+
+
+## 🧩 Architecture at a Glance
