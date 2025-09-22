@@ -50,10 +50,18 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 
 ---
 
-## 🧩 📐👷🏻‍♀️ Detailed Architecture at a Glance
+## 📐👷🏻‍♀️ Architecture at a Glance
 
   <p align="center">
-   <img src="arch_microwatt.png" alt="GTKWave Counter Output" width="300%">
+   <img src="final_arch.png" alt="GTKWave Counter Output" width="90%">
+</p>
+
+---
+
+## 🧩 Detailed Architecture a
+
+  <p align="center">
+   <img src="arch_microwatt.png" alt="GTKWave Counter Output" width="80%">
   <br>
   <b>🔗⚡🖥️ Integration with Microwatt SoC</b>
 </p>
@@ -83,6 +91,22 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 5. **Lightweight On-Chip DMA**  
    - 🚀 Automated data movement between **sensor FIFO → SPU → memory**.  
    - CPU freed from repetitive tasks → saves energy.  
+
+---
+
+## 🚀 Process Flow
+
+  <p align="center">
+   <img src="process_che.png" alt="GTKWave Counter Output" width="100%">
+</p>
+
+---
+
+## 🧮 SWOT analysis 
+
+  <p align="center">
+   <img src="swot_analysis.png" alt="GTKWave Counter Output" width="70%">
+</p>
 
 ---
 
