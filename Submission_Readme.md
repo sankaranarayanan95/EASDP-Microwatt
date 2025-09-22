@@ -134,7 +134,6 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 ## 👨‍💻 Contributors
 - 📝 **Sankararayanan V**
 - 📝 **Chezhiyan M**
-- 📝 **Ebinesh K**
 
 ---
 
@@ -145,6 +144,3 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 - 📐 Physical design via **OpenLane (SKY130)**.  
 - 🎉 Prepare for **tapeout submission** in OpenFrame!  
 
-
-
-## 🧩 Architecture at a Glance
