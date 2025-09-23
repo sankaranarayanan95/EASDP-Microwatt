@@ -58,7 +58,7 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 
 ---
 
-## 🧩 Detailed Architecture a
+## 🧩 Detailed Architecture
 
   <p align="center">
    <img src="arch_microwatt.png" alt="GTKWave Counter Output" width="80%">
@@ -160,6 +160,8 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 - 📝 **Chezhiyan M**
 - 📝 **Senbagaseelan V**
 - 📝 **Ebinesh K**
+- 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/sankaranarayanan-velu-8a6ab9290/)
 
 ---
 
