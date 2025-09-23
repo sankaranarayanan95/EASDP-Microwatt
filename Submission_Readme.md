@@ -160,7 +160,7 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 - 📝 **Chezhiyan M**
 - 📝 **Senbagaseelan V**
 - 📝 **Ebinesh K**
-- 
+  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/sankaranarayanan-velu-8a6ab9290/)
 
 ---
