@@ -158,6 +158,8 @@ We introduce the **Energy-Adaptive Sensor Data Processor (EASDP)** tightly coupl
 ## 👨‍💻 Contributors
 - 📝 **Sankararayanan V**
 - 📝 **Chezhiyan M**
+- 📝 **Senbagaseelan V**
+- 📝 **Ebinesh K**
 
 ---
 
